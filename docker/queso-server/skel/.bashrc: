@@ -1,0 +1,24 @@
+# Configurar PATH restringido
+export PATH=/home/queso/bin
+readonly PATH
+
+# Anular comandos integrados
+alias echo="echo Comando no permitido"
+alias cd="echo Comando no permitido"
+alias pwd="echo Comando no permitido"
+alias export="echo Comando no permitido"
+alias source="echo Comando no permitido"
+alias unset="echo Comando no permitido"
+alias alias="echo Comando no permitido"
+alias unalias="echo Comando no permitido"
+alias history="echo Comando no permitido"
+alias set="echo Comando no permitido"
+alias unsetopt="echo Comando no permitido"
+alias setopt="echo Comando no permitido"
+alias exec="echo Comando no permitido"
+
+# Prompt personalizado
+PS1="queso@queso-server:\w$ "
+
+# No guardar historial
+export HISTFILE=/dev/null

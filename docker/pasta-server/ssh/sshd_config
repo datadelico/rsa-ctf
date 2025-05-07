@@ -1,0 +1,41 @@
+# /etc/ssh/sshd_config para pasta-server
+# Configuración para CTF RSA
+
+# Básicas
+Port 22
+Protocol 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Autenticación
+PermitRootLogin no
+PubkeyAuthentication yes
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+
+# Solo permitir el usuario pasta
+AllowUsers pasta
+
+# Restricciones de seguridad
+X11Forwarding no
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+PermitTunnel no
+PermitUserEnvironment no
+PermitTTY yes
+
+# Archivos y permisos
+StrictModes yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+# Mensajes
+PrintMotd no
+PrintLastLog no
+Banner /home/pasta/README.md
+
+# Configuración de sesión
+ClientAliveInterval 120
+ClientAliveCountMax 3

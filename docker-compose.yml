@@ -1,0 +1,25 @@
+
+services:
+  queso-server:
+    build:
+      context: ./docker/queso-server
+    hostname: queso-server
+    container_name: queso-server
+    ports:
+      - "2222:22"
+    networks:
+      - ctf_network
+
+  pasta-server:
+    build:
+      context: ./docker/pasta-server
+    hostname: pasta-server
+    container_name: pasta-server
+    ports:
+      - "2223:22"
+    networks:
+      - ctf_network
+
+networks:
+  ctf_network:
+    driver: bridge
