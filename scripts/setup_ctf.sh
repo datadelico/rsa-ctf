@@ -17,4 +17,4 @@ docker compose down
 docker compose build
 docker compose up -d
 
-echo "¡CTF listo! SSH disponible en localhost:22223 (usuario: pasta, password: tomate)"
+echo "¡CTF listo! SSH disponible en localhost:2223 (usuario: pasta, password: tomate)"

@@ -125,5 +125,5 @@ echo "Paso 6: Conectando al servidor SSH usando la clave privada recuperada y"
 ssh -i "$OUTPUT_DIR/$OUTPUT_SSH_KEY" -J pasta@localhost:2223 queso@queso-server
 echo "=== OBTENIENDO FLAG MEDIANTE PIVOTING A TRAVÉS DE PASTA ==="
 cat flag.txt
-echo "=== FLAG FINAL OBTENIDA MEDIANTE PIVOTING ==="
-echo "¡Felicidades! Has completado el CTF exitosamente usando técnicas de pivoting."
+logout
+echo "✓ Conexión SSH exitosa y flag recuperada."
