@@ -82,7 +82,16 @@ Este script automáticamente:
 
 ## Resolviendo el CTF 
 
-### Obtnemos la clave pública y archivos cifrados usando solo SSH
+### Conéctate al servidor pasta
+
+```bash
+ssh pasta@localhost -p 2223
+# Contraseña: tomate
+```
+
+### Obtnemos la clave pública y archivos cifrados
+
+#### Con SSH normal (interactivo):
 
 ```bash
 ssh pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
@@ -130,7 +139,6 @@ cat flag.txt
 # Verificar que los archivos binarios se transfirieron correctamente
 hexdump -C encrypted_flag.bin | head
 hexdump -C encrypted_ssh_key.bin | head
-
 ```
 
 ### Problemas con Docker

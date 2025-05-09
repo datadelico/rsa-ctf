@@ -1,29 +1,51 @@
-=== CTF Challenge: Pasta's Password Vault ===
+# CTF Challenge: Pasta's Password Vault
 
-¡Bienvenido al servidor de pasta!
+## Introducción
 
-He guardado mi clave SSH para acceder al servidor queso-server para el usuario queso, pero la cifré usando una contraseña importante.
-Esa contraseña está en un archivo cifrado con una clave RSA débil.
+¡Bienvenido al servidor de Pasta!
 
-Archivos importantes:
-- /home/pasta/public_key.pem: Clave pública RSA débil (256 bits)
-- /home/pasta/encrypted_flag.bin: Flag cifrada con public_key.pem
-- /home/pasta/encrypted_ssh_key.bin: Clave SSH cifrada con la flag como contraseña
+Pasta ha protegido su clave SSH para acceder al servidor **queso-server** (usuario `queso`) mediante una contraseña secreta. A su vez, esa contraseña está almacenada en un archivo cifrado con una clave RSA débil.
 
-Comandos que puedes usar:
-- cd
-- ls
-- cat
-- ssh
-- base64
+## Archivos disponibles
 
-¿Puedes factorizar la clave RSA para recuperar la flag para descifrar la clave ssh y acceder al servidor queso?
+- **`/home/pasta/public_key.pem`**  
+    Clave pública RSA de sólo 256 bits.
 
-Pista: Utiliza la biblioteca de factorización sagemath y cryptography para obtener la clave privada.
+- **`/home/pasta/encrypted_flag.bin`**  
+    Contiene la "flag" cifrada con la clave pública anterior.
 
-Pista: Comandos utilizados para cifrar la clave SSH:
-    openssl enc -aes-256-cbc -salt -in "$SSH_KEY" -out "$ENCRYPTED_SSH_KEY" -pass "pass:$FLAG_CONTENT"
-    openssl pkeyutl -encrypt -pubin -inkey "$PUBLIC_KEY" -in "$FLAG_FILE" -out "$ENCRYPTED_FLAG"
+- **`/home/pasta/encrypted_ssh_key.bin`**  
+    Clave SSH cifrada usando la flag como contraseña.
 
-Pista: Recuerda que los archivos cifrados estan en datos binarios, cat es para texto utiliza base64 para medios que solo permiten texto.
+## Objetivo
 
+1. Factoriza la clave RSA de 256 bits para obtener la clave privada.
+2. Descifra `encrypted_flag.bin` y recupera la flag.
+3. Usa la flag como contraseña para descifrar `encrypted_ssh_key.bin`.
+4. Conéctate vía SSH al servidor queso-server con el usuario queso.
+
+## Herramientas y comandos disponibles
+
+```
+cd    # Navegar carpetas
+ls    # Listar archivos
+cat   # Mostrar contenido (solo para texto)
+ssh   # Conexión SSH
+base64 # Codificar/decodificar en Base64
+```
+
+> **Consejo**: Los archivos cifrados están en formato binario. Para verlos o transferirlos por canales que admiten solo texto, emplea base64.
+
+## Sugerencias para la factorización
+
+- Utiliza **SageMath** junto con bibliotecas de factorización (por ejemplo, `cryptography` en Python).
+- Echa un vistazo a proyectos especializados como **RsaCtfTool**, que automatizan gran parte del proceso.
+
+## Comandos originales de cifrado
+
+```bash
+openssl enc -aes-256-cbc -salt -in "$SSH_KEY" -out "$ENCRYPTED_SSH_KEY" -pass "pass:$FLAG_CONTENT"
+openssl pkeyutl -encrypt -pubin -inkey "$PUBLIC_KEY" -in "$FLAG_FILE" -out "$ENCRYPTED_FLAG"
+```
+
+¡Adelante, factoriza la RSA y descubre la contraseña que te dará acceso al servidor!
