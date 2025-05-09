@@ -1,12 +1,8 @@
 # /etc/ssh/sshd_config para queso-server
-# Configuración restrictiva para CTF
+# Configuración para 
 
-# Direcciones y puertos
+# Básicas
 Port 22
-AddressFamily inet
-ListenAddress 0.0.0.0
-
-# Opciones básicas de servidor
 Protocol 2
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
@@ -18,33 +14,28 @@ PubkeyAuthentication yes
 PasswordAuthentication no
 PermitEmptyPasswords no
 ChallengeResponseAuthentication no
-UsePAM no
+UsePAM yes
 
-# Solo permitir el usuario queso
+# Solo permitir el usuario pasta
 AllowUsers queso
 
-# Archivos y directorios
-AuthorizedKeysFile .ssh/authorized_keys
-StrictModes no
-
-# Restricciones
+# Restricciones de seguridad
 X11Forwarding no
-AllowAgentForwarding no
-AllowTcpForwarding no
-GatewayPorts no
+AllowAgentForwarding yes
+AllowTcpForwarding yes
 PermitTunnel no
 PermitUserEnvironment no
+PermitTTY yes
 
-# Activar banner con mensaje de CTF
-Banner /etc/ssh/banner
-PrintMotd yes
-PrintLastLog yes
+# Archivos y permisos
+StrictModes yes
+AuthorizedKeysFile /home/queso/.ssh/authorized_keys
 
-# Logging
-SyslogFacility AUTH
-LogLevel DEBUG3
+# Mensajes
+PrintMotd no
+PrintLastLog no
+Banner /home/queso/flag.txt
 
-# Otros ajustes de seguridad
-MaxAuthTries 3
-LoginGraceTime 30
-MaxStartups 3:50:10
+# Configuración de sesión
+ClientAliveInterval 120
+ClientAliveCountMax 3

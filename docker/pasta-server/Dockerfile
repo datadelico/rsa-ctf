@@ -35,11 +35,8 @@ RUN chmod 500 /home/pasta/bin
 # Permitir SOLO los comandos estrictamente necesarios (eliminando cd y limitando ssh)
 RUN ln -sf /bin/ls /home/pasta/bin/ls && \
     ln -sf /bin/cat /home/pasta/bin/cat && \
-    ln -sf /usr/bin/base64 /home/pasta/bin/base64 
-
-# Proporciona acceso SSH restringido (solo a queso-server)
-RUN echo '#!/bin/bash\n/usr/bin/ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "ForceCommand=echo Comando interno no permitido" queso@queso-server "$@"' > /home/pasta/bin/ssh
-RUN chmod 555 /home/pasta/bin/ssh
+    ln -sf /usr/bin/base64 /home/pasta/bin/base64 && \
+    ln -sf /usr/bin/ssh /home/pasta/bin/ssh
 
 # Copiar claves SSH
 COPY ./keys/id_rsa /home/pasta/.ssh/id_rsa
@@ -47,9 +44,9 @@ COPY ./keys/public_key.pem /home/pasta/public_key.pem
 COPY ./keys/private_key.pem /home/pasta/private_key.pem
 
 # Establecer permisos correctos
-RUN chmod 400 /home/pasta/.ssh/id_rsa  # Más restrictivo: 400 en lugar de 600
-RUN chmod 444 /home/pasta/public_key.pem  # Más restrictivo: 444 en lugar de 644
-RUN chmod 400 /home/pasta/private_key.pem  # Más restrictivo: 400 en lugar de 644
+RUN chmod 400 /home/pasta/.ssh/id_rsa  
+RUN chmod 444 /home/pasta/public_key.pem  
+RUN chmod 400 /home/pasta/private_key.pem  
 RUN chown pasta:pasta /home/pasta/.ssh/id_rsa
 
 # Configuración SSH reforzada
@@ -63,8 +60,7 @@ RUN chmod 400 /home/pasta/flag.txt
 
 # Copiar README.md con instrucciones
 COPY README.md /home/pasta/README.md
-RUN chmod 444 /home/pasta/README.md  # Más restrictivo: 444 en lugar de 644
-
+RUN chmod 444 /home/pasta/README.md 
 # Establecer propiedad y permisos adecuados del directorio bin
 RUN chown -R root:root /home/pasta/bin
 RUN chmod 555 /home/pasta/bin/*
@@ -75,7 +71,6 @@ EXPOSE 22
 # Copiar script de configuración
 COPY setup.sh /setup.sh
 RUN chown root:root /setup.sh
-RUN chmod 500 /setup.sh  # Más restrictivo: 500 en lugar de 711
-
+RUN chmod 500 /setup.sh 
 # Ejecutar script de configuración
 CMD ["/setup.sh"]
