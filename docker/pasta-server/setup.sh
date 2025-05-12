@@ -6,8 +6,6 @@
 # Configurar directorio PATH limitado para rbash
 mkdir -p /home/pasta/bin
 ln -sf /bin/ls /home/pasta/bin/ls
-ln -sf /bin/cat /home/pasta/bin/cat
-ln -sf /bin/cd /home/pasta/bin/cd
 ln -sf /usr/bin/ssh /home/pasta/bin/ssh
 ln -sf /usr/bin/base64 /home/pasta/bin/base6
 
@@ -40,8 +38,5 @@ else
     echo "Advertencia: No se encontraron todos los archivos necesarios"
 fi
 
-# Iniciar servicio SSH
-service ssh start
-
-# Mantener el contenedor en ejecución
-tail -f /dev/null
+# Iniciar servicio SSH en modo de depuración
+/usr/sbin/sshd -D -e

@@ -36,7 +36,6 @@ RUN chmod 500 /home/pasta/bin
 
 # Permitir SOLO los comandos estrictamente necesarios (eliminando cd y limitando ssh)
 RUN ln -sf /bin/ls /home/pasta/bin/ls && \
-    ln -sf /bin/cat /home/pasta/bin/cat && \
     ln -sf /usr/bin/base64 /home/pasta/bin/base64 && \
     ln -sf /usr/bin/ssh /home/pasta/bin/ssh
 

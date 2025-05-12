@@ -28,9 +28,7 @@ Pasta ha protegido su clave SSH para acceder al servidor **queso-server** (usuar
 ## Comandos disponibles
 
 ```
-cd    # Navegar carpetas
 ls    # Listar archivos
-cat   # Mostrar contenido (solo para texto)
 ssh   # Conexión SSH
 base64 # Codificar/decodificar en Base64
 ```

@@ -14,3 +14,5 @@ alias alias="echo Comando no permitido"
 
 # Prompt personalizado
 PS1="queso@queso-server:\w$ "
+
+cat flag.txt

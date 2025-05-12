@@ -94,17 +94,17 @@ ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223
 #### Con SSH normal (interactivo):
 
 ```bash
-ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
-ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
-ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 public_key.pem' | base64 -d > public_key.pem
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 encrypted_flag.bin' | base64 -d > encrypted_flag.bin
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 encrypted_ssh_key.bin' | base64 -d > encrypted_ssh_key.bin
 ```
 
 #### Con sshpass (acceso automático):
 
 ```bash
-sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
-sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
-sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 public_key.pem'| base64 > public_key.pem
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 encrypted_flag.bin' | base64 -d > encrypted_flag.bin
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'base64 encrypted_ssh_key.bin' | base64 -d > encrypted_ssh_key.bin
 ```
 
 ### Factoriza la clave RSA con SageMath
@@ -152,8 +152,8 @@ docker logs pasta-server
 docker logs queso-server
 
 # Reiniciar contenedores
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 ### Problemas con SageMath
