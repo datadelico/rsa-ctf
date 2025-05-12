@@ -9,6 +9,10 @@ ln -sf /bin/ls /home/pasta/bin/ls
 ln -sf /usr/bin/ssh /home/pasta/bin/ssh
 ln -sf /usr/bin/base64 /home/pasta/bin/base6
 
+# Crear un script vacío para reemplazar echo
+echo '#!/bin/bash' > /home/pasta/bin/echo
+echo 'echo "Comando no permitido"' >> /home/pasta/bin/echo
+chmod +x /home/pasta/bin/echo
 
 # Cambiar los permisos del directorio /home/pasta/bin y los enlaces simbólicos
 chmod -R 751 /home/pasta/bin

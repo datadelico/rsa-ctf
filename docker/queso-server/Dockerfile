@@ -28,7 +28,7 @@ RUN ln -sf /bin/cat /home/queso/bin/cat
 RUN ln -sf /usr/bin/ssh /home/queso/bin/ssh
 
 # Copiar el .bashrc reforzado
-COPY skel/.bashrc: /home/queso/.bashrc
+COPY skel/.bashrc /home/queso/.bashrc
 RUN chmod 444 /home/queso/.bashrc
 RUN chown root:root /home/queso/.bashrc
 
