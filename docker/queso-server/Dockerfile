@@ -57,6 +57,14 @@ RUN chmod 555 /home/queso/bin/ssh
 RUN chmod 755 /home/queso
 RUN chmod 700 /home/queso/.ssh
 
+# Deshabilitar el mensaje de bienvenida (MOTD)
+RUN chmod -x /etc/update-motd.d/*
+
+# Clear legal file
+RUN echo "" > /etc/legal
+RUN echo "" > /etc/issue
+RUN echo "" > /etc/issue.net
+
 # Puerto SSH
 EXPOSE 22
 

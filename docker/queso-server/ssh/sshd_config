@@ -34,7 +34,6 @@ AuthorizedKeysFile /home/queso/.ssh/authorized_keys
 # Mensajes
 PrintMotd no
 PrintLastLog no
-Banner /home/queso/flag.txt
 
 # Configuración de sesión
 ClientAliveInterval 120

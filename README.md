@@ -85,25 +85,26 @@ Este script automáticamente:
 ### Conéctate al servidor pasta
 
 ```bash
-ssh pasta@localhost -p 2223
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223
 # Contraseña: tomate
 ```
 
-### Obtnemos la clave pública y archivos cifrados
+### Obtenemos la clave pública y archivos cifrados
 
 #### Con SSH normal (interactivo):
 
 ```bash
-ssh pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
-ssh pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
-ssh pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
+ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
 ```
-##### Con sshpass (acceso automático):
+
+#### Con sshpass (acceso automático):
 
 ```bash
-sshpass -p 'tomate' ssh pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
-sshpass -p 'tomate' ssh pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
-sshpass -p 'tomate' ssh pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat public_key.pem' > public_key.pem
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_flag.bin | base64' | base64 -d > encrypted_flag.bin
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no pasta@localhost -p 2223 'cat encrypted_ssh_key.bin | base64' | base64 -d > encrypted_ssh_key.bin
 ```
 
 ### Factoriza la clave RSA con SageMath
@@ -126,10 +127,10 @@ openssl enc -d -aes-256-cbc -in encrypted_ssh_key.bin -out id_rsa -pass "pass:fl
 chmod 600 id_rsa
 ```
 #### Conéctate al servidor queso pivotando desde el servidor pasta usando la clave SSH recuperada:
-```bash
-sshpass -p 'tomate' ssh -i id_rsa -J pasta@localhost:2223 queso@queso-server 
-cat flag.txt 
 
+```bash
+sshpass -p 'tomate' ssh -o StrictHostKeyChecking=no -i id_rsa -J pasta@localhost:2223 queso@queso-server
+cat flag.txt
 ```
 
 ## Solución de problemas comunes
